@@ -146,6 +146,71 @@ a {
   margin-bottom: 20px;
 }
 
+/* 活動写真スライドショー */
+.slideshow-section {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+.slideshow {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #000;
+}
+
+/* aspect-ratio 未対応ブラウザ向けフォールバック（高さ0で潰れるのを防ぐ） */
+.slideshow::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%; /* 16:9 */
+}
+
+@supports (aspect-ratio: 16 / 9) {
+  .slideshow {
+    aspect-ratio: 16 / 9;
+  }
+  .slideshow::before {
+    content: none;
+    display: none;
+  }
+}
+
+.slideshow .slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+/* スマホ幅では縦長になりすぎないよう少しだけ縦を詰める */
+@media (max-width: 480px) {
+  .slideshow::before {
+    padding-top: 62%;
+  }
+
+  @supports (aspect-ratio: 16 / 9) {
+    .slideshow {
+      aspect-ratio: 4 / 3;
+    }
+  }
+}
+
+.slideshow .slide.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slideshow .slide {
+    transition: none;
+  }
+}
+
 /* ニュース */
 .news-list {
   list-style: none;
