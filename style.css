@@ -1,3 +1,32 @@
+---
+---
+/* ==========================================================
+   遠州磐田BBC 公式サイト スタイル
+   デザイン方向性:「グラウンド日和」— やわらかい・親しみやすい・自然体
+   ========================================================== */
+
+@font-face {
+  font-family: "Baloo2Accent";
+  src: url("{{ site.baseurl }}/fonts/baloo2-800-latin.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --ink: #1f2b22;
+  --ink-soft: #5c6b60;
+  --bg: #f2f7f0;
+  --surface: #ffffff;
+  --line: #dbe6db;
+  --accent: #1f7a3d;
+  --accent-strong: #1a5c30;
+  --accent-bright: #3fa34d;
+  --accent-soft: #e6f3e8;
+  --gold: #b06a12;
+  --gold-soft: #fbead0;
+}
+
 /* リセット・共通 */
 * {
   box-sizing: border-box;
@@ -5,27 +34,30 @@
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  color: #222;
+  background: var(--bg);
+  font-family: "Hiragino Sans", "Yu Gothic Medium", "Yu Gothic", Meiryo, "Helvetica Neue", Arial, sans-serif;
+  color: var(--ink);
   overflow-x: hidden;
-  padding-top: 56px; /* ← ヘッダーの高さ分（調整OK） */
+  padding-top: 60px; /* ← ヘッダーの高さ分（調整OK） */
 }
 
 
 a {
-  color: #003a8f;
+  color: var(--accent);
   text-decoration: none;
 }
 
 /* ヘッダー */
 .header {
-  background: #003a8f;
-  color: #fff;
+  background: var(--surface);
+  color: var(--ink);
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 1000;
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 12px rgba(31, 43, 34, 0.05);
 }
 
 
@@ -38,32 +70,43 @@ a {
 }
 
 .logo {
-  font-size: 18px;
-  font-weight: bold;
+  font-family: "Baloo2Accent", "Hiragino Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 0.01em;
 }
 
 .logo a,
 .logo a:visited,
 .logo a:hover,
 .logo a:active {
-  color: #fff;
+  color: var(--accent-strong);
   text-decoration: none;
 }
 
 /* PCナビ */
 .nav-pc {
   margin-left: auto;
+  display: flex;
+  align-items: center;
 }
 
 .nav-pc a {
-  color: #fff;
-  margin-left: 18px;
-  font-size: 14px;
+  color: var(--ink-soft);
+  margin-left: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav-pc a:hover {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
 }
 
 /* Instagram（PC） */
 .header-instagram {
-  margin-left: 16px;
+  margin-left: 10px;
 }
 
 .header-instagram img {
@@ -87,26 +130,35 @@ a {
 .hamburger span {
   width: 24px;
   height: 2px;
-  background: #fff;
+  background: var(--ink);
+  border-radius: 2px;
 }
 
 /* スマホメニュー */
 .nav-sp {
   display: none;
   position: absolute;
-  top: 56px;
+  top: 60px;
   left: 0;
   width: 100%;
-  background: #003a8f;
-  padding: 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 12px 24px rgba(31, 43, 34, 0.08);
+  padding: 12px 16px;
 }
 
 .nav-sp a {
   display: block;
-  color: #fff;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  color: var(--ink);
+  padding: 12px 14px;
+  border-radius: 12px;
   font-size: 14px;
+}
+
+.nav-sp a:active,
+.nav-sp a:hover {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
 }
 
 .sp-instagram {
@@ -120,19 +172,156 @@ a {
 
 /* HERO */
 .hero {
-  background: #f2f4f8;
-  padding: 40px 0;
+  position: relative;
+  background: linear-gradient(180deg, var(--accent-soft) 0%, var(--bg) 65%);
+  padding: 44px 0;
   text-align: left;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -70px;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 182, 72, 0.28) 0%, transparent 70%);
+  pointer-events: none;
 }
 
 .hero-inner {
+  position: relative;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 16px;
 }
 
+.hero-lead {
+  font-size: 17px;
+}
 
-/* セクション */
+/* ヒーロー：テキスト＋写真の横並びグリッド */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: "Baloo2Accent", "Hiragino Sans", sans-serif;
+  font-size: 11px;
+  color: #7a5a00;
+  background: #ffdb96;
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+
+.hero-headline {
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+  text-wrap: balance;
+  color: var(--ink);
+}
+
+.hero-headline em {
+  font-style: normal;
+  color: var(--accent);
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-strong);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13.5px;
+  padding: 13px 26px;
+  border-radius: 999px;
+  margin-top: 6px;
+  box-shadow: 0 10px 22px rgba(31, 43, 34, 0.18);
+}
+
+.hero-cta:hover {
+  background: var(--accent);
+}
+
+.hero-photo .slideshow {
+  border-radius: 22px;
+}
+
+/* 発足・部員数などの要点バッジ */
+.stat-badges {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.stat-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 18px 8px 8px;
+}
+
+.stat-badge .dot {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-bright);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Baloo2Accent", "Hiragino Sans", sans-serif;
+  font-size: 12.5px;
+  flex: 0 0 auto;
+}
+
+.stat-badge .text {
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.stat-badge .text strong {
+  display: block;
+  font-size: 13.5px;
+  color: var(--ink);
+}
+
+@media (max-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-headline {
+    font-size: 25px;
+  }
+}
+
+/* セクション見出し */
+.eyebrow {
+  display: block;
+  font-family: "Baloo2Accent", "Hiragino Sans", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
 .section {
   max-width: 1100px;
   margin: 40px auto;
@@ -141,24 +330,22 @@ a {
 
 .section h2 {
   font-size: 18px;
-  border-left: 4px solid #003a8f;
-  padding-left: 10px;
+  border-left: 4px solid var(--accent-bright);
+  border-radius: 2px;
+  padding-left: 12px;
   margin-bottom: 20px;
+  color: var(--ink);
 }
 
-/* 活動写真スライドショー */
-.slideshow-section {
-  margin-top: 24px;
-  margin-bottom: 24px;
-}
-
+/* 活動写真スライドショー（ヒーロー内に設置） */
 .slideshow {
   position: relative;
   width: 100%;
   max-width: 100%;
   overflow: hidden;
-  border-radius: 8px;
+  border-radius: 20px;
   background: #000;
+  box-shadow: 0 16px 30px rgba(31, 43, 34, 0.16);
 }
 
 /* aspect-ratio 未対応ブラウザ向けフォールバック（高さ0で潰れるのを防ぐ） */
@@ -215,24 +402,32 @@ a {
 .news-list {
   list-style: none;
   padding: 0;
+  display: grid;
+  gap: 10px;
 }
 
 .news-list li {
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
   font-size: 14px;
 }
 
 .date {
-  color: #003a8f;
-  margin-right: 8px;
+  font-family: "Baloo2Accent", "Hiragino Sans", sans-serif;
+  color: var(--accent);
+  margin-right: 10px;
+  font-size: 13px;
 }
 
 /* フッター */
 .footer {
-  background: #eee;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft);
   text-align: center;
-  padding: 20px;
+  padding: 24px;
   font-size: 12px;
 }
 
@@ -274,6 +469,9 @@ a {
   width: 100%;
   height: 900px;
   margin-top: 24px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 12px 26px rgba(31, 43, 34, 0.12);
 }
 
 /* iframe 自体 */
@@ -293,8 +491,9 @@ a {
 }
 
 .post-date {
-  color: #666;
-  font-size: 13px;
+  font-family: "Baloo2Accent", "Hiragino Sans", sans-serif;
+  color: var(--ink-soft);
+  font-size: 12.5px;
   margin: 8px 0 18px;
 }
 
@@ -306,11 +505,15 @@ a {
 .simple-list {
   list-style: none;
   padding: 0;
+  display: grid;
+  gap: 10px;
 }
 
 .simple-list li {
-  padding: 10px 0;
-  border-bottom: 1px solid #ddd;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 14px;
 }
 
 .pager {
@@ -321,15 +524,16 @@ a {
   font-size: 14px;
 }
 
-/* ヘッダー（PC）＋スマホメニュー共通 */
-.header,
-.nav-sp {
-  background: linear-gradient(
-    to bottom,
-    #0a3f8a 0%,
-    #0d4ea3 100%
+.pager a {
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
 
-  );
+.pager a:hover {
+  background: var(--accent-soft);
+  border-color: var(--accent-soft);
 }
 
 /* google form*/
@@ -356,7 +560,7 @@ a {
 }
 
 .closed {
-  color: #999;
+  color: #8a978d;
 }
 
 .closed .strike {
@@ -372,6 +576,7 @@ a {
   width: 100%;
   max-width: 100%;
   height: auto;
+  border-radius: 16px;
 }
 
 .post-body{
@@ -388,7 +593,7 @@ a {
 .sponsors-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 24px;
+  gap: 20px;
   align-items: center;
 }
 
@@ -401,17 +606,19 @@ a {
   height: 140px;
   padding: 16px;
 
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 18px;
 
   text-align: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 
 .sponsor-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 22px rgba(31, 43, 34, 0.10);
+  border-color: var(--accent-soft);
 }
 
 .sponsor-card img {
@@ -441,6 +648,6 @@ a {
 
 .sponsor-name {
   font-size: 13px;
-  color: #444;
+  color: var(--ink-soft);
   line-height: 1.4;
 }
