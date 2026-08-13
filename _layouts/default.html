@@ -24,12 +24,26 @@
 
   <!-- OGP / canonical（only production） -->
   {% if site.env == "production" %}
+    <meta property="og:site_name" content="遠州磐田ベースボールクラブ">
     <meta property="og:title" content="遠州磐田ベースボールクラブ 公式サイト">
     <meta property="og:description" content="静岡県磐田市で活動する中学生向け軟式野球クラブ。2026年4月から活動">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.url | absolute_url }}">
     <meta property="og:image" content="{{ '/images/ogp.png' | absolute_url }}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
+
+    <!-- 構造化データ：検索結果でのサイト名認識を補強 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SportsClub",
+      "name": "遠州磐田ベースボールクラブ",
+      "alternateName": "遠州磐田BBC",
+      "url": "{{ '/' | absolute_url }}",
+      "logo": "{{ '/images/favicon.ico' | absolute_url }}",
+      "sameAs": ["https://www.instagram.com/enshu.iwata.bbc/"]
+    }
+    </script>
   {% endif %}
 
 </head>
