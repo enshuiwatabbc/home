@@ -237,6 +237,11 @@ a {
   .announce-bar {
     border-radius: 18px;
   }
+
+  /* 矢印を文言のすぐ右に添え、「バッジ／文言+矢印」のきれいな2行にする */
+  .announce-arrow {
+    margin-left: 2px;
+  }
 }
 
 .hero-inner {
