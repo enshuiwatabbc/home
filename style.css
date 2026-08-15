@@ -225,6 +225,7 @@ a {
   font-size: 13.5px;
   font-weight: 700;
   color: var(--ink);
+  white-space: nowrap;
 }
 
 .announce-arrow {
@@ -235,12 +236,24 @@ a {
 
 @media (max-width: 480px) {
   .announce-bar {
-    border-radius: 18px;
+    border-radius: 999px;
+    flex-wrap: nowrap;
+    gap: 6px;
+    padding: 8px 14px;
   }
 
-  /* 矢印を文言のすぐ右に添え、「バッジ／文言+矢印」のきれいな2行にする */
+  .announce-badge {
+    font-size: 10px;
+    padding: 4px 9px;
+  }
+
+  .announce-text {
+    font-size: 12px;
+  }
+
   .announce-arrow {
-    margin-left: 2px;
+    margin-left: 0;
+    flex: 0 0 auto;
   }
 }
 
