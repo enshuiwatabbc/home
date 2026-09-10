@@ -21,6 +21,8 @@ date: 2026-09-11
 
 **持ち物**：グローブ・水筒（動きやすい服装でお越しください）
 
+お申し込みは、各開催日の1週間前までにお願いします。
+
 ▶ **[体験会の申し込みはこちら](https://docs.google.com/forms/d/e/1FAIpQLSdggfcQljhggWedwhV_66-nBi8x81er3cmqvFsZxBQjdZCZTg/viewform){:target="_blank" rel="noopener"}**
 
 ---
