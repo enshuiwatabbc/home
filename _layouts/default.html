@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="{{ site.baseurl }}/images/favicon.ico" type="image/x-icon">
   <link rel="shortcut icon" href="{{ site.baseurl }}/images/favicon.ico" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="48x48" href="{{ site.baseurl }}/images/favicon-48.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.baseurl }}/images/favicon-32.png">
   <link rel="stylesheet" href="{{ site.baseurl }}/style.css">
 
   <!-- SEO -->
@@ -32,16 +34,29 @@
     <meta property="og:image" content="{{ '/images/ogp.png' | absolute_url }}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
 
-    <!-- 構造化データ：検索結果でのサイト名認識を補強 -->
+    <!-- 構造化データ：検索結果でのサイト名・アイコン認識を補強 -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
-      "@type": "SportsClub",
-      "name": "遠州磐田ベースボールクラブ",
-      "alternateName": "遠州磐田BBC",
-      "url": "{{ '/' | absolute_url }}",
-      "logo": "{{ '/images/favicon.ico' | absolute_url }}",
-      "sameAs": ["https://www.instagram.com/enshu.iwata.bbc/"]
+      "@graph": [
+        {
+          "@type": "SportsClub",
+          "@id": "{{ '/' | absolute_url }}#organization",
+          "name": "遠州磐田ベースボールクラブ",
+          "alternateName": "遠州磐田BBC",
+          "url": "{{ '/' | absolute_url }}",
+          "logo": "{{ '/images/logo.png' | absolute_url }}",
+          "image": "{{ '/images/logo.png' | absolute_url }}",
+          "sameAs": ["https://www.instagram.com/enshu.iwata.bbc/"]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "{{ '/' | absolute_url }}#website",
+          "name": "遠州磐田ベースボールクラブ",
+          "url": "{{ '/' | absolute_url }}",
+          "publisher": { "@id": "{{ '/' | absolute_url }}#organization" }
+        }
+      ]
     }
     </script>
   {% endif %}
